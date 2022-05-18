@@ -46,7 +46,7 @@ const promptUser = () => {
             type: "list",
             name: "license",
             message: "What kind of license should your project have?",
-            choices: ["MIT", "GNU"],
+            choices: ["MIT", "GNU", "Apache", "Mozilla", "SIL", "Unlicense"]
 
         },
         //contributors of the project
@@ -65,9 +65,10 @@ const promptUser = () => {
     ]);
 };
 
-const generateReadMe = ({ username, email, installation, title, description, license, contributing, tests }) =>
+const generateReadMe = ({ username, email, installation, usage, title, description, license, contributing, tests }) =>
     `# ${title}
-
+    [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+    [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)
  ## Description
     
  ${description}
@@ -88,7 +89,7 @@ const generateReadMe = ({ username, email, installation, title, description, lic
     
     
 # Installation
-    
+To install the repository, please use the following command:
  ${installation} 
     
 # Usage
@@ -96,26 +97,24 @@ const generateReadMe = ({ username, email, installation, title, description, lic
 ${usage} 
     
 # License
-    
-${license}
-    
+This repository is licensed under ${license}
+
 # Contributing
-    
+
 ${contributing}
     
 # Test
-    
+To run test on this project run the following command:
 ${tests}
     
 # Questions 
-    
-${username},${email} `;
+  For any questions and comments please email me at: ${email}. To view my other projects visit: ${username} `;
 
 const init = () => {
     promptUser()
 
-    .then((answers) => fs.writeFileSync('README.md', generateReadMe(answers)))
-        .then(() => console.log('Transfered to README.md'))
+    .then((answers) => fs.writeFileSync('ExampleREADME.md', generateReadMe(answers)))
+        .then(() => console.log('Transfered to ExampleREADME.md'))
         .catch((err) => console.error(err));
 }
 
