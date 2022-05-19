@@ -16,18 +16,6 @@ const promptUser = () => {
             name: "email",
             message: "Please enter your email:"
         },
-        //describing the installation process if any
-        {
-            type: "input",
-            name: "installation",
-            message: "Describe the installation process"
-        },
-        {
-            type: "input",
-            name: "usage",
-            message: "What does the user need to know about the repository?"
-        },
-
         //title of project
         {
             type: "input",
@@ -41,6 +29,20 @@ const promptUser = () => {
             message: "Write a brief description of your project:"
 
         },
+
+        //describing the installation process if any
+        {
+            type: "input",
+            name: "installation",
+            message: "Describe the installation process"
+        },
+        // for the user to understand the usage about the repository
+        {
+            type: "input",
+            name: "usage",
+            message: "What does the user need to know about the repository?"
+        },
+
         // choice of license
         {
             type: "list",
@@ -66,10 +68,12 @@ const promptUser = () => {
 };
 
 const generateReadMe = ({ username, email, installation, usage, title, description, license, contributing, tests }) =>
-    `# ${title}
-    [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
-    [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)
- ## Description
+    `
+# ${title}
+
+![Github](https://img.shields.io/badge/license-${license}-yellow.svg)
+   
+## Description
     
  ${description}
     
@@ -108,7 +112,7 @@ To run test on this project run the following command:
 ${tests}
     
 # Questions 
-  For any questions and comments please email me at: ${email}. To view my other projects visit: ${username} `;
+  For any questions and comments please email me at: ${email}. To view my other projects visit: ${username} on Github `;
 
 const init = () => {
     promptUser()
